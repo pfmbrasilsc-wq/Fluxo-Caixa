@@ -1,0 +1,6 @@
+{
+  "name": "Fluxo de Caixa Pessoal",
+  "description": "Aplicativo de gestão financeira pessoal com integração e sincronização nativa com a planilha do Google Drive 'Fluxo Caixa'.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
