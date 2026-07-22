@@ -16,9 +16,22 @@ export interface Transaction {
   costCenter?: string;
 }
 
+export interface AccountItem {
+  name: string; // e.g. CEF, BB, MPg, WAL
+  description: string; // e.g. Caixa Econômica Federal
+  balance: number;
+}
+
+export interface CardItem {
+  name: string; // e.g. ELO, VISA
+  description: string;
+  balance: number;
+}
+
 export interface CostCenter {
   name: string;
-  associatedCard: string;
+  description?: string;
+  associatedCard?: string;
   balance: number;
 }
 
@@ -36,7 +49,9 @@ export interface SpreadsheetInfo {
 export interface FinancialData {
   spreadsheet: SpreadsheetInfo;
   accounts: string[];
+  accountItems: AccountItem[];
   cards: string[];
+  cardItems: CardItem[];
   costCenters: CostCenter[];
   categories: CategoryItem[];
   monthsData: Record<string, Transaction[]>; // key: 'Jan', 'Fev', ...

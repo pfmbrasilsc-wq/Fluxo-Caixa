@@ -13,9 +13,10 @@ interface CategoryData {
 interface CategoryChartProps {
   data: CategoryData[];
   selectedMonth: string;
+  selectedYear: number;
 }
 
-export const CategoryChart: React.FC<CategoryChartProps> = ({ data, selectedMonth }) => {
+export const CategoryChart: React.FC<CategoryChartProps> = ({ data, selectedMonth, selectedYear }) => {
   const chartData = data.filter((item) => item.amount > 0);
 
   const CustomTooltip = ({ active, payload }: any) => {
@@ -47,7 +48,7 @@ export const CategoryChart: React.FC<CategoryChartProps> = ({ data, selectedMont
           </div>
           <div>
             <h3 className="text-sm font-bold text-slate-900">Distribuição por Categoria</h3>
-            <p className="text-xs text-slate-500 font-medium">Gastos e Investimentos em {selectedMonth}</p>
+            <p className="text-xs text-slate-500 font-medium">Gastos e Investimentos em {selectedMonth}/{selectedYear}</p>
           </div>
         </div>
       </div>
@@ -55,7 +56,7 @@ export const CategoryChart: React.FC<CategoryChartProps> = ({ data, selectedMont
       {chartData.length === 0 ? (
         <div className="py-12 text-center text-xs text-slate-500 space-y-2">
           <PieChartIcon className="w-8 h-8 mx-auto opacity-30 text-slate-400" />
-          <p>Nenhuma despesa registrada para {selectedMonth}.</p>
+          <p>Nenhuma despesa registrada para {selectedMonth}/{selectedYear}.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">

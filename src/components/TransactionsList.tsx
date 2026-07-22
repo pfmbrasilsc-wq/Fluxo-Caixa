@@ -6,11 +6,13 @@ import { Search, ArrowUpRight, ArrowDownRight, Layers, CreditCard, Tag, Calendar
 interface TransactionsListProps {
   transactions: Transaction[];
   selectedMonth: string;
+  selectedYear: number;
 }
 
 export const TransactionsList: React.FC<TransactionsListProps> = ({
   transactions,
   selectedMonth,
+  selectedYear,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'income' | 'expense'>('all');
@@ -40,13 +42,13 @@ export const TransactionsList: React.FC<TransactionsListProps> = ({
       <div className="p-4 sm:p-5 border-b border-slate-200 space-y-3 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
         <div>
           <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-            Histórico de Lançamentos ({selectedMonth})
+            Histórico de Lançamentos ({selectedMonth}/{selectedYear})
             <span className="text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">
               {filtered.length} {filtered.length === 1 ? 'registro' : 'registros'}
             </span>
           </h3>
           <p className="text-xs text-slate-500 font-medium">
-            Lançamentos extraídos em tempo real da aba '{selectedMonth}' do Google Sheets
+            Lançamentos com data em {selectedMonth}/{selectedYear} na aba 'Lançamentos'
           </p>
         </div>
 
@@ -108,7 +110,7 @@ export const TransactionsList: React.FC<TransactionsListProps> = ({
           <p>
             {searchTerm.trim()
               ? 'Nenhum lançamento corresponde à busca.'
-              : `Nenhum lançamento registrado no mês de ${selectedMonth}.`}
+              : `Nenhum lançamento registrado no mês de ${selectedMonth}/${selectedYear}.`}
           </p>
         </div>
       ) : (
